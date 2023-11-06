@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" href="output.css" />
+    <title>Document</title>
+    <meta property="article:published_time" content="{}" data-rh="true" />
+  </head>
+  <body>
+    <header
+      class="prose md:prose-lg dark:prose-invert mx-auto px-4 md:pt-20 md:pb-12 py-4"
+    >
+      <nav class="not-prose">
+        <span>
+          <a
+            class="hover:underline hover:text-lime-700 dark:hover:text-lime-200"
+            href="/"
+            >Shreshth Mohan</a
+          >
+        </span>
+        <span>/</span>
+        <span>
+          <a
+            class="hover:text-lime-700 dark:hover:text-lime-200 hover:underline"
+            href="/c/code"
+          >
+            Code
+          </a>
+        </span>
+      </nav>
+    </header>
+
+    <main class="prose md:prose-lg dark:prose-invert mx-auto p-4 pb-0">
+      <article>
+        <header>
+          <h1>
+            Installing an npm package without saving to package.json or lock
+            files
+          </h1>
+          <div
+            class="font-serif flex justify-between border-t pt-2 dark:border-slate-600 md:text-sm text-xs"
+          >
+            <span
+              ><a href="https://github.com/shreshthmohan/next-blog/issues/93"
+                >Source</a
+              ></span
+            >
+            <div class="flex flex-col items-end">
+              <div>
+                <span>Published on </span>
+                <time datetime="2021-08-15T00:00:00.000Z">Aug 15, 2021</time>
+              </div>
+              <div>
+                <span>Updated on </span>
+                <time datetime="2021-08-15T00:00:00.000Z">Aug 15, 2023</time>
+              </div>
+            </div>
+          </div>
+        </header>
+        <!-- { body of the article  starts -->
+        <div class="font-serif pt-12">
+          <ul class="contains-task-list">
+            <li class="task-list-item">
+              <input type="checkbox" disabled="" />
+              <!-- -->TODO: This will still break if there's a conflict with
+              other <code>dependencies</code> in <code>package.json</code>
+            </li>
+          </ul>
+          <h2>Lorem ipsum dolor sit amet.</h2>
+          <p>
+            I recently ran into a problem where I needed a package, but the
+            existing set of npm packages would break if I installed the one I
+            needed. This is because they needed a different Node.js version.
+          </p>
+          <p>So here's what I did.</p>
+          <ol>
+            <li>Switch to my desired version of node:</li>
+          </ol>
+          <pre
+            class="language-sh"
+          ><code class="language-sh code-highlight"><span class="code-line">nvm use v16
+</span></code></pre>
+          <ol start="2">
+            <li>Install the required package without saving</li>
+          </ol>
+          <pre
+            class="language-sh"
+          ><code class="language-sh code-highlight"><span class="code-line"><span class="token function">npm</span> <span class="token function">install</span> --no-package-lock --no-save tailwindcss@^3.3.0
+</span></code></pre>
+          <ol start="3">
+            <li>
+              Define a script in <code>package.json</code> and then run it:
+            </li>
+          </ol>
+          <div class="rehype-code-title">package.json</div>
+          <pre
+            class="language-json"
+          ><code class="language-json code-highlight"><span class="code-line"><span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line">    <span class="token property">"twdev"</span><span class="token operator">:</span> <span class="token string">"tailwindcss -i ./tailwind/styles.css -o ./app/assets/stylesheets/tailwind.css --watch"</span>
+</span><span class="code-line"><span class="token punctuation">}</span>
+</span></code></pre>
+          <ol start="4">
+            <li>
+              As an additional step I could switch back to the node version they
+              were using earlier in a shell script
+            </li>
+          </ol>
+          <pre
+            class="language-sh"
+          ><code class="language-sh code-highlight"><span class="code-line"><span class="token comment"># Make note of current node version</span>
+</span><span class="code-line">nvm <span class="token function">ls</span>
+</span><span class="code-line"><span class="token comment"># Store that in a variable and switch to that with</span>
+</span><span class="code-line">nvm use <span class="token operator">&lt;</span>prev-node-version<span class="token operator">&gt;</span>
+</span></code></pre>
+        </div>
+        <!-- body of the article ends } -->
+        <hr />
+      </article>
+    </main>
+
+    <footer class="prose md:prose-lg dark:prose-invert mx-auto px-4 pb-16">
+      Wish to discuss something? Reach out to me via
+      <a href="mailto:shreshthmohan@hey.com">email</a> or
+      <a href="https://twitter.com/shreshthmohan">Twitter</a>
+    </footer>
+  </body>
+</html>
